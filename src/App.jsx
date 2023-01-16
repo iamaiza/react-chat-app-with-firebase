@@ -4,6 +4,8 @@ import { Fragment, useRef, useState } from "react";
 
 import Cookies from "universal-cookie";
 import Chat from "./components/Chat/Chat";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase-config";
 const cookies = new Cookies();
 
 function App() {
@@ -21,10 +23,16 @@ function App() {
       setRoom(inputRefVal)
     }
 
+    const signOutUser = (e) => {
+      e.preventDefault()
+
+      signOut(auth)
+      setIsAuth(false)
+      setRoom(null)
+      cookies.remove('auth-token')
+    }
     return (
       <Fragment>
-        {/* <div className="h-14 bg-sky-700"></div> */}
-        <div>
           {room ? (
             <Chat room={room} />
           ) : (
@@ -46,7 +54,10 @@ function App() {
               </div>
             </form>
           )}
-        </div>
+
+          <div className="flex justify-center items-center mt-5">
+            <button className="bg-sky-700 py-2 px-5 text-white" onClick={signOutUser}>Sign Out</button>
+          </div>
       </Fragment>
     );
 }

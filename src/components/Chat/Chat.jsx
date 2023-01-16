@@ -39,12 +39,12 @@ const Chat = ({ room }) => {
     };
 
     const getMessages = chatMessages.map(message => (
-        <h1>{message.message}</h1>
+        <h1 className="my-2">{message.message}</h1>
     ))
 
     return (
         <div>
-            <div>
+            <div className="border-2 border-sky-700 w-11/12 md:w-6/12 m-auto mt-12 py-3 px-3">
                 {getMessages}
             </div>
             <form action="" onSubmit={formSubmitHandler} className='border-2 border-sky-700 mt-5 py-2 px-2 sm:px-3 w-11/12 m-auto rounded'>
