@@ -38,9 +38,10 @@ const Chat = ({ room }) => {
         setNewMsg('')
     };
 
-    const getMessages = chatMessages.map(message => (
-        <h1 className="my-2">{message.message}</h1>
-    ))
+    const getMessages = chatMessages.map(message => {
+        <h1 key={message.id} className="my-2">{message.message}</h1>
+        
+    })
 
     return (
         <div>
